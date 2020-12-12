@@ -35,6 +35,9 @@ local function solve(filename)
         return true
       end
     end
+
+    rules[bag].hasShinyGold = false
+    return false
   end
 
   local count = 0
