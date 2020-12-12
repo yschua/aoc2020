@@ -7,8 +7,7 @@ local function solve(filename)
   for line in io.lines(filename) do
     local parent, children = line:match("(.+) bags contain (.+)")
     rules[parent] = {contain = {}}
-    for child in children:gmatch("%d+ %a+ %a+ bag") do
-      local count, child = child:match("(%d+) (%a+ %a+) bag")
+    for count, child in children:gmatch("(%d+) (%a+ %a+) bag") do
       rules[parent].contain[child] = count
     end
   end
