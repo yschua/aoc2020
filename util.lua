@@ -21,6 +21,27 @@ function util.contains(tab, value)
   return false
 end
 
+local function gcd( m, n )
+  while n ~= 0 do
+      local q = m
+      m = n
+      n = q % n
+  end
+  return m
+end
+
+local function lcm( m, n )
+  return ( m ~= 0 and n ~= 0 ) and m * n / gcd( m, n ) or 0
+end
+
+function util.lcm(tab)
+  local n = lcm(tab[1], tab[2])
+  if #tab > 2 then
+    for i = 3, #tab do n = lcm(n, tab[i]) end
+  end
+  return n
+end
+
 function string:split(delimiter)
   local result = {}
   local from  = 1
@@ -36,4 +57,16 @@ end
 
 function string:trim()
   return self:gsub("^%s*(.-)%s*$", "%1")
+end
+
+function table.fromstring(str)
+  local tab = {}
+  for i = 1, #str do table.insert(tab, str:sub(i, i)) end
+  return tab
+end
+
+function table.tostring(tab)
+  local str = ""
+  for i = 1, #tab do str = str..tab[i] end
+  return str
 end
