@@ -70,3 +70,18 @@ function table.tostring(tab)
   for i = 1, #tab do str = str..tab[i] end
   return str
 end
+
+function table.copy(tab)
+  local copy = {}
+  for _, v in ipairs(tab) do table.insert(copy, v) end
+  return copy
+end
+
+function table.removevalue(tab, value)
+  for i, v in ipairs(tab) do
+    if v == value then
+      table.remove(tab, i)
+      return
+    end
+  end
+end
